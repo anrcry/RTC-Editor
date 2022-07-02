@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --rtc-border-color: #00000000;
+  --rtc-border-width: 2px;
+  --rtc-caret-1-color: rgb(45, 194, 107);
+  --rtc-caret-3-color: rgb(241, 196, 15);
+  --rtc-caret-2-color: rgb(224, 62, 45);
+  --rtc-caret-4-color: rgb(53, 152, 219);
+  --rtc-caret-5-color: rgb(185, 106, 217);
+  --rtc-caret-6-color: rgb(230, 126, 35);
+  --rtc-caret-7-color: rgb(170, 166, 157);
+  --rtc-caret-8-color: rgb(243, 104, 224);
+}
+
+.rtc-caret-1-color{
+  --rtc-border-color: var(--rtc-caret-1-color) !important;
+}
+.rtc-caret-3-color{
+  --rtc-border-color: var(--rtc-caret-3-color) !important;
+}
+.rtc-caret-2-color{
+  --rtc-border-color: var(--rtc-caret-2-color) !important;
+}
+.rtc-caret-4-color{
+  --rtc-border-color: var(--rtc-caret-4-color) !important;
+}
+.rtc-caret-5-color{
+  --rtc-border-color: var(--rtc-caret-5-color) !important;
+}
+.rtc-caret-6-color{
+  --rtc-border-color: var(--rtc-caret-6-color) !important;
+}
+.rtc-caret-7-color{
+  --rtc-border-color: var(--rtc-caret-7-color) !important;
+}
+.rtc-caret-8-color{
+  --rtc-border-color: var(--rtc-caret-8-color) !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+  border-right: var(--rtc-border-width) solid var(--rtc-border-color);
+  border-bottom: var(--rtc-border-width) solid var(--rtc-border-color);
+  border-top: var(--rtc-border-width) solid var(--rtc-border-color);
+}
+
+.chip img {
+  --rtc-border-width: 3px;
+  float: left;
+  margin: auto 11px 0px -27px;
+  margin-top: calc(calc(var(--rtc-border-width) + -0.9px) * -1);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: var(--rtc-border-width) solid var(--rtc-border-color);
+}
+
+.chip .badge-postion{
+  top: -1px;
+  right: 8px;
+}
+
+.d-inline-grid {
+  display: inline-grid;
+  display: -ms-inline-grid;
+  display: -moz-inline-grid;
+}
