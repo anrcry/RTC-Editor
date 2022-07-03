@@ -5,7 +5,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { decode } from 'jsonwebtoken';
 import { 
   getContent, 
-  getJwt, 
+  getJwt,
   getSecretKey, 
   getUserAccessLevel, 
   getUserDetails, 
@@ -13,7 +13,10 @@ import {
   useCollaborators, 
   useDocumentTitle 
 } from '../api/api';
-import { ListGroup, Badge } from 'react-bootstrap';
+// eslint-disable-next-line no-unused-vars
+import { ListGroup } from 'react-bootstrap';
+// eslint-disable-next-line no-unused-vars
+import RTCClients from '../components/Client';
 
 /** @type {{type: string, name: string, version: string | null, os: string | null} | null} */
 const browser = detect();
@@ -39,7 +42,9 @@ const config = {
     help
     charmap
     quickbars
-    emoticons`],
+    emoticons
+    code
+    codesample`],
   /* IMAGE */
   editimage_cors_hosts: ['picsum.photos'],
   image_advtab: true,
@@ -51,27 +56,14 @@ const config = {
   quickbars_selection_toolbar: 'bold italic underline | quicklink blockquote | h1 h2 h3',
   quickbars_insert_toolbar: false,
   quickbars_image_toolbar: 'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
-  toolbar: 'bold italic underline strikethrough | fontfamily fontsize blocks | undo redo | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen preview print | image link',
+  toolbar: 'bold italic underline strikethrough | fontfamily fontsize blocks | undo redo | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen preview print | image link code codesample',
   toolbar_sticky: true,
   toolbar_mode: 'wrap',
   skin: 'oxide',
 };
 
 // eslint-disable-next-line no-unused-vars
-const ACCESS_LEVEL = {
-  manage: {
-    text: 'Manager',
-    variant: 'primary'
-  },
-  edit: {
-    text: 'Editor',
-    variant: 'info',
-  },
-  view:{
-    text: 'Viewer',
-    variant: 'secondary'
-  }
-};
+
 
 export default function DocumentEdit({ token }) {
   const { documentId } = useParams();
@@ -117,32 +109,9 @@ export default function DocumentEdit({ token }) {
   return (
     <>
       <h1>{title}</h1>
-      {
-      clients.length ? 
-      <>
-        <h5>You are in collaboration with</h5> 
-        <ListGroup className="my-4 gap-2" horizontal={['sm']} key="collabGroup">
-        {clients.map((client) =>
-            <>
-              <ListGroup.Item key={client.clientId} className="border-0">
-                <div className={["chip", `rtc-caret-${client?.caretNumber}-color`].join(" ")}>
-                  <img src={`https://avatars.dicebear.com/api/bottts/${documentId}-${client.userId}.svg?b=lightgrey&r=50&size=200&scale=95`} alt="Person" />
-                  <div className="d-inline-grid">
-                    <span className="fs-4 fw-bolder">{client.userDetails.fullName}</span>
-                  {
-                    typeof(client?.access) === "string" ?
-                    <>
-                      <Badge key={`${client.clientId}-${client?.caretNumber}`} bg={ACCESS_LEVEL[client?.access]['variant']} className="position-absolute me-auto badge-postion">{ACCESS_LEVEL[client?.access]['text']}</Badge>
-                    </> : ""
-                  }
-                  </div>
-                </div>
-              </ListGroup.Item>
-            </>
-            )}
-          </ListGroup>
-          <hr/>
-      </>: ""}
+      
+      <RTCClients clients={clients} />
+    
       <Editor
         key={documentId}
         cloudChannel='6'

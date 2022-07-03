@@ -75,8 +75,13 @@ code {
 }
 
 .chip .badge-postion{
-  top: -1px;
-  right: 8px;
+  top: -33px;
+  margin-left: 42%;
+  line-height: 1;
+}
+
+.chip .text {
+  line-height: 0;
 }
 
 .d-inline-grid {
